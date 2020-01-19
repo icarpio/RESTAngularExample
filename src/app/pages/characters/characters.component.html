@@ -1,0 +1,40 @@
+<h1>Listado de personajes</h1>
+
+<hr>
+<div class="row">
+    <table *ngIf="!loading && characters.length > 0" class="table table-dark mt-3 animated fadeIn faster">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Specie</th>
+                <th scope="col">Origin</th>
+                <th scope="col">Created</th>
+                <th scope="col"><i class="fa fa-eye"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let c of characters">
+                <th>{{c.name}}</th>
+                <th scope="row">{{c.origin['name']}}</th>
+                <th scope="row">{{c.gender}}</th>
+                <th scope="row">{{c.created | date:"EEEE dd, MMMM yyyy"}}</th>
+                <th scope="row"><button class="btn btn-primary" [routerLink]="['/character/', c.id]">
+                    <i class="fa fa-eye"></i>
+                </button></th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div *ngIf="loading" class="alert alert-info text-center mt-3 animated fadeIn faster">
+    <h4 class="alert-heading"> Cargando</h4>
+    <span class="fa fa-male fa-spin fa-2x"></span>
+    <p class="mb-0">Espere por favor</p>
+</div>
+
+<div *ngIf="!loading && characters.length === 0" class="alert alert-warning text-center mt-3 animated fadeIn faster">
+    <h4 class="alert-heading"> No hay registros</h4>
+    <span class="fa fa-exclamation fa-2x"></span>
+    <p class="mb-0">Espere por favor</p>
+</div>
